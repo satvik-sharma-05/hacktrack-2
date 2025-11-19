@@ -1,0 +1,331 @@
+/* Video Styles */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.background-video.intro-mode {
+  filter: brightness(1.2) contrast(1.4) saturate(1.3);
+  opacity: 1;
+}
+
+.background-video.background-mode {
+  filter: brightness(0.8) contrast(1.3) saturate(1.2);
+  opacity: 0.4;
+}
+
+/* Intro Overlay */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.welcome-content {
+  text-align: center;
+  color: #00f3ff;
+  animation: fadeIn 1s ease-out;
+}
+
+.welcome-title {
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 0.5rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+.welcome-subtitle {
+  font-size: 1.5rem;
+  letter-spacing: 0.3rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  animation: subtitleFade 3s ease-in-out;
+}
+
+.interaction-prompt {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: #00f3ff;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+.hint-pulse {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #00f3ff;
+  border-radius: 50%;
+  animation: circlePulse 2s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff; }
+  100% { text-shadow: 0 0 30px #00f3ff, 0 0 60px #00f3ff, 0 0 80px #00f3ff; }
+}
+
+@keyframes subtitleFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  50% { opacity: 0.8; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes circlePulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Compact Media Controls */
+.media-controls-compact {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+}
+
+.controls-toggle {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.controls-toggle:hover {
+  background: #00f3ff;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);
+}
+
+.toggle-icon {
+  font-size: 1.2rem;
+}
+
+.audio-status-indicator {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+}
+
+.mini-visualizer {
+  display: flex;
+  align-items: end;
+  gap: 1px;
+  height: 12px;
+}
+
+.mini-visualizer span {
+  width: 2px;
+  background: #00ff88;
+  border-radius: 1px;
+  animation: miniBar 1.2s infinite ease-in-out;
+}
+
+.mini-visualizer span:nth-child(1) { height: 3px; animation-delay: 0s; }
+.mini-visualizer span:nth-child(2) { height: 6px; animation-delay: 0.2s; }
+.mini-visualizer span:nth-child(3) { height: 4px; animation-delay: 0.4s; }
+
+@keyframes miniBar {
+  0%, 100% { transform: scaleY(0.7); opacity: 0.6; }
+  50% { transform: scaleY(1.3); opacity: 1; }
+}
+
+/* Controls Panel */
+.controls-panel {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid #00f3ff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+  min-width: 180px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.control-item {
+  margin-bottom: 10px;
+}
+
+.control-item:last-child {
+  margin-bottom: 0;
+}
+
+.control-btn.compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 243, 255, 0.1);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+  letter-spacing: 0.05rem;
+  width: 100%;
+  text-align: left;
+}
+
+.control-btn.compact:hover {
+  background: #00f3ff;
+  color: #000;
+  transform: translateX(-2px);
+}
+
+.control-btn.compact.muted {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.control-btn.compact.muted:hover {
+  background: #ff6b6b;
+  color: #000;
+}
+
+.control-btn.compact.enabled {
+  border-color: #00ff88;
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.control-btn.compact.enabled:hover {
+  background: #00ff88;
+  color: #000;
+}
+
+.control-btn.compact.disabled {
+  border-color: #888;
+  color: #888;
+  background: rgba(136, 136, 136, 0.1);
+}
+
+.control-btn.compact.disabled:hover {
+  background: #888;
+  color: #000;
+}
+
+.control-btn.compact.replay {
+  border-color: #ffa500;
+  color: #ffa500;
+  background: rgba(255, 165, 0, 0.1);
+}
+
+.control-btn.compact.replay:hover {
+  background: #ffa500;
+  color: #000;
+}
+
+.btn-icon {
+  font-size: 0.9rem;
+  width: 16px;
+  text-align: center;
+}
+
+.btn-text {
+  font-weight: 600;
+  flex: 1;
+}
+
+/* Audio Info */
+.audio-info {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 243, 255, 0.3);
+  text-align: center;
+}
+
+.track-info {
+  color: #00f3ff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.track-subtitle {
+  color: #00ff88;
+  font-size: 0.6rem;
+  letter-spacing: 0.05rem;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcome-title {
+    font-size: 2.5rem;
+    letter-spacing: 0.3rem;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .media-controls-compact {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .controls-toggle {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .controls-panel {
+    right: -10px;
+    min-width: 160px;
+  }
+}

@@ -1,0 +1,852 @@
+/* ----------------------------
+   Base Imports
+----------------------------- */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ----------------------------
+   Custom Theme Setup
+----------------------------- */
+
+/* Apply dark variant globally */
+@custom-variant dark (&:is(.dark *));
+
+/* Root Tron Variables */
+:root {
+  --neon-blue: #00f2fe;
+  --neon-cyan: #00ffff;
+  --neon-purple: #6c5ce7;
+  --neon-green: #00ff88;
+  --tron-bg: #0a0f1c;
+  --tron-card: #111827;
+  --tron-border: #1e293b;
+  --tron-text: #f8fafc;
+  --tron-text-secondary: #cbd5e1;
+  --tron-grid: #1e293b;
+}
+
+/* ----------------------------
+   Global Styles
+----------------------------- */
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--tron-bg);
+  color: var(--tron-text);
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* Headings use Orbitron for that Tron feel */
+h1, h2, h3, h4, h5, h6,
+.tron-heading {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ----------------------------
+   TRON Background Grid
+----------------------------- */
+.tron-grid {
+  background-image: 
+    linear-gradient(to right, var(--tron-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--tron-grid) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.tron-grid-dense {
+  background-image: 
+    linear-gradient(to right, var(--tron-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--tron-grid) 1px, transparent 1px);
+  background-size: 25px 25px;
+  opacity: 0.1;
+}
+
+/* ----------------------------
+   Clean Glow Effects
+----------------------------- */
+
+/* Subtle text glow for headings */
+.text-glow {
+  text-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+}
+
+.text-glow-sm {
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+/* Border glows */
+.border-glow-blue {
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+}
+
+.border-glow-green {
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+  border: 1px solid rgba(0, 255, 136, 0.4);
+}
+
+.border-glow-purple {
+  box-shadow: 0 0 15px rgba(108, 92, 231, 0.3);
+  border: 1px solid rgba(108, 92, 231, 0.4);
+}
+
+/* Gradient borders */
+.gradient-border {
+  position: relative;
+  background: var(--tron-card);
+  border-radius: 12px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  padding: 1px;
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+/* ----------------------------
+   Smooth Animations
+----------------------------- */
+
+/* Subtle pulse for important elements */
+@keyframes subtle-pulse {
+  0%, 100% { 
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+  }
+  50% { 
+    opacity: 0.8;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+/* Smooth float */
+@keyframes smooth-float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-8px); 
+  }
+}
+
+.animate-smooth-float {
+  animation: smooth-float 4s ease-in-out infinite;
+}
+
+/* Grid flow animation */
+@keyframes grid-flow {
+  0% { 
+    transform: translate(0, 0); 
+  }
+  100% { 
+    transform: translate(-50px, -50px); 
+  }
+}
+
+.animate-grid-flow {
+  animation: grid-flow 20s linear infinite;
+}
+
+/* ----------------------------
+   Scrollbar Customization
+----------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tron-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+}
+
+/* ----------------------------
+   Button Styles
+----------------------------- */
+.tron-button {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tron-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.tron-button:hover::before {
+  left: 100%;
+}
+
+.tron-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
+}
+
+.tron-button:active {
+  transform: translateY(0);
+}
+
+.tron-button-outline {
+  background: transparent;
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+}
+
+.tron-button-outline:hover {
+  background: rgba(0, 242, 254, 0.1);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+/* ----------------------------
+   Card Styles
+----------------------------- */
+.tron-card {
+  background: var(--tron-card);
+  border: 1px solid var(--tron-border);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.tron-card:hover {
+  border-color: rgba(0, 242, 254, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 242, 254, 0.15);
+  transform: translateY(-4px);
+}
+
+.tron-card-glow {
+  background: var(--tron-card);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.tron-card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  padding: 1px;
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-green));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0.3;
+}
+
+/* ----------------------------
+   Text & Typography
+----------------------------- */
+.text-gradient {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-green {
+  background: linear-gradient(135deg, var(--neon-green), var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ----------------------------
+   Input Fields
+----------------------------- */
+.tron-input {
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid var(--tron-border);
+  border-radius: 8px;
+  color: var(--tron-text);
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.tron-input:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.1);
+}
+
+.tron-input::placeholder {
+  color: var(--tron-text-secondary);
+  opacity: 0.6;
+}
+
+/* ----------------------------
+   Divider Lines
+----------------------------- */
+.tron-divider {
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--neon-blue) 20%, 
+    var(--neon-blue) 80%, 
+    transparent 100%);
+  margin: 2rem 0;
+  opacity: 0.3;
+}
+
+.tron-divider-vertical {
+  width: 1px;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    var(--neon-blue) 20%, 
+    var(--neon-blue) 80%, 
+    transparent 100%);
+  margin: 0 2rem;
+  opacity: 0.3;
+}
+
+/* ----------------------------
+   Status Indicators
+----------------------------- */
+.status-active {
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--neon-green);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.status-pending {
+  background: rgba(255, 211, 61, 0.1);
+  color: #ffd33d;
+  border: 1px solid rgba(255, 211, 61, 0.3);
+}
+
+.status-inactive {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+/* ----------------------------
+   Loading Spinner
+----------------------------- */
+.tron-spinner {
+  border: 2px solid transparent;
+  border-top: 2px solid var(--neon-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ----------------------------
+   Utility Classes
+----------------------------- */
+.glass-effect {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-shadow-sm {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ----------------------------
+   Responsive Improvements
+----------------------------- */
+@media (max-width: 768px) {
+  .tron-grid {
+    background-size: 30px 30px;
+  }
+  
+  .tron-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .tron-button {
+    padding: 10px 20px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .tron-grid,
+  .tron-card-glow::before,
+  .tron-button::before {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Video Styles - Make sure video is always visible */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Behind all content but above default background */
+  pointer-events: none;
+}
+
+.background-video.intro-mode {
+  filter: brightness(1.3) contrast(1.5) saturate(1.4);
+  opacity: 1;
+}
+
+.background-video.background-mode {
+  filter: brightness(0.6) contrast(1.4) saturate(1.3);
+  opacity: 0.2; /* Very subtle in background */
+}
+
+/* Make sure all pages have transparent backgrounds */
+.min-h-screen {
+  background: transparent !important;
+}
+
+.bg-black {
+  background: transparent !important;
+}
+
+/* Intro Overlay */
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.welcome-content {
+  text-align: center;
+  color: #00f3ff;
+  animation: fadeIn 1s ease-out;
+}
+
+.welcome-title {
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 0.5rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+.welcome-subtitle {
+  font-size: 1.5rem;
+  letter-spacing: 0.3rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  animation: subtitleFade 3s ease-in-out;
+}
+
+.interaction-prompt {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: #00f3ff;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+.hint-pulse {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #00f3ff;
+  border-radius: 50%;
+  animation: circlePulse 2s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff; }
+  100% { text-shadow: 0 0 30px #00f3ff, 0 0 60px #00f3ff, 0 0 80px #00f3ff; }
+}
+
+@keyframes subtitleFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  50% { opacity: 0.8; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes circlePulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Keep the existing media controls CSS from previous version */
+.media-controls-compact {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+}
+
+.controls-toggle {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.controls-toggle:hover {
+  background: #00f3ff;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);
+}
+
+.toggle-icon {
+  font-size: 1.2rem;
+}
+
+.audio-status-indicator {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+}
+
+.mini-visualizer {
+  display: flex;
+  align-items: end;
+  gap: 1px;
+  height: 12px;
+}
+
+.mini-visualizer span {
+  width: 2px;
+  background: #00ff88;
+  border-radius: 1px;
+  animation: miniBar 1.2s infinite ease-in-out;
+}
+
+.mini-visualizer span:nth-child(1) { height: 3px; animation-delay: 0s; }
+.mini-visualizer span:nth-child(2) { height: 6px; animation-delay: 0.2s; }
+.mini-visualizer span:nth-child(3) { height: 4px; animation-delay: 0.4s; }
+
+@keyframes miniBar {
+  0%, 100% { transform: scaleY(0.7); opacity: 0.6; }
+  50% { transform: scaleY(1.3); opacity: 1; }
+}
+
+.controls-panel {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid #00f3ff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+  min-width: 180px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.control-item {
+  margin-bottom: 10px;
+}
+
+.control-item:last-child {
+  margin-bottom: 0;
+}
+
+.control-btn.compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 243, 255, 0.1);
+  border: 1px solid #00f3ff;
+  color: #00f3ff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+  letter-spacing: 0.05rem;
+  width: 100%;
+  text-align: left;
+}
+
+.control-btn.compact:hover {
+  background: #00f3ff;
+  color: #000;
+  transform: translateX(-2px);
+}
+
+.control-btn.compact.muted {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.control-btn.compact.muted:hover {
+  background: #ff6b6b;
+  color: #000;
+}
+
+.control-btn.compact.enabled {
+  border-color: #00ff88;
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.control-btn.compact.enabled:hover {
+  background: #00ff88;
+  color: #000;
+}
+
+.control-btn.compact.disabled {
+  border-color: #888;
+  color: #888;
+  background: rgba(136, 136, 136, 0.1);
+}
+
+.control-btn.compact.disabled:hover {
+  background: #888;
+  color: #000;
+}
+
+.control-btn.compact.replay {
+  border-color: #ffa500;
+  color: #ffa500;
+  background: rgba(255, 165, 0, 0.1);
+}
+
+.control-btn.compact.replay:hover {
+  background: #ffa500;
+  color: #000;
+}
+
+.btn-icon {
+  font-size: 0.9rem;
+  width: 16px;
+  text-align: center;
+}
+
+.btn-text {
+  font-weight: 600;
+  flex: 1;
+}
+
+.audio-info {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 243, 255, 0.3);
+  text-align: center;
+}
+
+.track-info {
+  color: #00f3ff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.track-subtitle {
+  color: #00ff88;
+  font-size: 0.6rem;
+  letter-spacing: 0.05rem;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcome-title {
+    font-size: 2.5rem;
+    letter-spacing: 0.3rem;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .media-controls-compact {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .controls-toggle {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .controls-panel {
+    right: -10px;
+    min-width: 160px;
+  }
+}
+
+.tron-glow {
+  position: relative;
+  background: linear-gradient(135deg, #00f2fe, #9d4edd) !important;
+  box-shadow: 
+    0 0 20px rgba(0, 242, 254, 0.4),
+    0 0 40px rgba(157, 78, 221, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 242, 254, 0.6) !important;
+}
+
+.tron-glow:hover {
+  box-shadow: 
+    0 0 30px rgba(0, 242, 254, 0.6),
+    0 0 60px rgba(157, 78, 221, 0.4),
+    inset 0 0 25px rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px);
+}
+
+
+.tron-glow:hover::before {
+  left: 100%;
+}
+
+.text-glow {
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.8), 0 0 16px rgba(157, 78, 221, 0.6) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Prevent body scrolling in chat */
+body.chat-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Ensure proper height inheritance */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Chat page specific fixes */
+.chat-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
