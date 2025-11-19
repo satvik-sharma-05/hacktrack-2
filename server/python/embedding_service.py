@@ -48,8 +48,10 @@ def similarity():
 def health():
     return jsonify({"status": "healthy"})
 
-
 if __name__ == "__main__":
-    PORT = int(os.getenv("PORT", 5002))  # Railway compatible
+    import os
+    
+    PORT = int(os.environ.get("PORT", 5002))
+
     print(f"EMBEDDING SERVICE STARTING ON PORT {PORT}")
-    app.run(host="0.0.0.0", port=PORT)
+    app.run(host="0.0.0.0", port=PORT, debug=False)
