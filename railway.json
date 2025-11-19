@@ -1,0 +1,9 @@
+{
+  "path": "server/python",
+  "build": {
+    "buildCommand": "pip install -r requirements.txt"
+  },
+  "deploy": {
+    "startCommand": "python embedding_service.py"
+  }
+}

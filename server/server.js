@@ -75,7 +75,7 @@ app.use(
 // ✅ CORS (MUST be configured exactly like this)
 app.use(
   cors({
-    origin: ["http://localhost:5173"], // ✅ exact frontend origin
+origin: [process.env.FRONTEND_URL],
     credentials: true, // ✅ allow cookies to flow
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -160,7 +160,7 @@ app.use(errorHandler);
 
 // ✅ Start server
 app.listen(config.PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${config.PORT}`);
+console.log(`🚀 Server running on PORT ${config.PORT}`);
 });
 import cron from "node-cron";
 import { exec } from "child_process";
