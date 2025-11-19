@@ -1,6 +1,9 @@
 {
   "path": "server/python",
   "language": "python",
+  "nixpacks": {
+    "builder": "heroku/buildpacks:20"
+  },
   "build": {
     "buildCommand": "pip install -r requirements.txt"
   },
